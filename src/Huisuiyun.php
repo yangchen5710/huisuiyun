@@ -96,6 +96,22 @@ class Huisuiyun
     }
 
     /**
+     * 同步接口-智能抬头
+     * @param string $companyName
+     * @return array
+     * @throws InvalidArgumentException
+     * @throws InvalidResponseException
+     */
+    public function queryAddressee(string $companyName)
+    {
+        $options = [
+            'companyName' => $companyName,
+        ];
+        $result = $this->doRequest('get', '/api/v2/agent/cdk/addressee/query', ['json' => $options]);
+        return $result;
+    }
+
+    /**
      * 异步接口-结算单同步新增并异步开票
      * @param int $invoiceType 发票类型 1 增值税专用发票 2增值税普通发票 3增值税电子普通发票 4增值税电子专用发票 7 全电发票(普通发票) 8 全电发票(专用发票) 9 全电纸质发票(普通发票) 10 全电纸质发票(专用发票)
      * @param string $taxNo 销方税号 长度在9-20位之间
