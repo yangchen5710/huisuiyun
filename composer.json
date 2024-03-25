@@ -1,0 +1,20 @@
+{
+    "name": "ycstar\/huisuiyun",
+    "description": "惠穗云接口对接",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ycstar",
+            "email": "547098838@qq.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.8",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ycstar\\Huisuiyun\\": "src"
+        }
+    }
+}
