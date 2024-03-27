@@ -65,7 +65,7 @@ class Huisuiyun
         $response = $this->getHttpClient()->post('/api/v2/agent/common/cdk/getToken', [
             'json' => [
                 'akString' => $this->aKey,
-                'secretString' => $this->sKey,
+                'secretString' => strtolower(md5($this->aKey.$this->sKey)),
                 'type' => $this->type,
                 'forceUpdate' => $forceUpdate,
             ],
