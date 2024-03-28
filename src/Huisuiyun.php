@@ -154,7 +154,7 @@ class Huisuiyun
     }
 
     /**
-     * 同步接口-红字信息表填开
+     * 红字信息表 同步接口-红字信息表填开
      * @param string $machineNo 销方设备号(税盘编号)
      * @param int $applicationRole 红字信息表申请类型 1购买方申请 2销售方申请
      * @param array $params
@@ -176,7 +176,7 @@ class Huisuiyun
     }
 
     /**
-     * 同步接口-红字信息表查询
+     * 红字信息表 同步接口-红字信息表查询
      * @param int $applicationRole 红字信息表申请类型 1购买方申请 2销售方申请
      * @param int $current 页数
      * @param int $size 每页条数
@@ -196,6 +196,58 @@ class Huisuiyun
             $options = array_merge($options, $params);
         }
         $result = $this->doRequest('post', '/api/v2/agent/cdk/invoice/red/getRedInvoiceInfo', ['json' => $options]);
+        return $result;
+    }
+
+    /**
+     * 全电发票 同步接口-红字信息表填开
+     * @param string $taxNoType 录入方身份 01-销方 02-购方
+     * @param string $invoiceNo 蓝字发票号码
+     * @param int $invoiceType 红字发票类型 7 全电发票(普通发票) 8 全电发票(专用发票)
+     * @param string $reason 红冲原因 03-开票有误 04-销货退回 05-销售折让 06-应税服务中止
+     * @param array $params
+     * @return array
+     * @throws InvalidArgumentException
+     * @throws InvalidResponseException
+     */
+    public function allElectricRedApply(string $taxNoType, string $invoiceNo, int $invoiceType, string $reason, array $params = [])
+    {
+        $options = [
+            'taxNoType' => $taxNoType,
+            'invoiceNo' => $invoiceNo,
+            'invoiceType' => $invoiceType,
+            'reason' => $reason
+        ];
+        if(!empty($params)){
+            $options = array_merge($options, $params);
+        }
+        $result = $this->doRequest('post', '/api/v2/agent/cdk/allElectric/red/apply', ['json' => $options]);
+        return $result;
+    }
+
+    /**
+     * 全电发票 同步接口-红字信息表查询
+     * @param int $current 页数
+     * @param string $taxNoType 税号标志 01-销方 02-购方
+     * @param string $startDate 开始日期 格式 "Y-m-d H:i:s"
+     * @param string $endDate 结束日期 格式 "Y-m-d H:i:s"
+     * @param array $params
+     * @return array
+     * @throws InvalidArgumentException
+     * @throws InvalidResponseException
+     */
+    public function allElectricRedList(int $current, string $taxNoType, string $startDate, string $endDate, array $params = [])
+    {
+        $options = [
+            'current' => $current,
+            'taxNoType' => $taxNoType,
+            'startDate' => $startDate,
+            'endDate' => $endDate
+        ];
+        if(!empty($params)){
+            $options = array_merge($options, $params);
+        }
+        $result = $this->doRequest('post', '/api/v2/agent/cdk/allElectric/red/list', ['json' => $options]);
         return $result;
     }
 
