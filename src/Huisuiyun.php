@@ -82,7 +82,7 @@ class Huisuiyun
         $expireDate = $result['message'];
         $expireIn = strtotime($expireDate) - time();
         $this->token = $token;
-        return ['token' => $token, 'expire_in' => $expireIn];
+        return ['token' => $token, 'expire_in' => $expireIn, 'expire_date' => $expireDate];
     }
 
     /**
