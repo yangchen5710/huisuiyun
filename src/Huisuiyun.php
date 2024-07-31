@@ -107,7 +107,7 @@ class Huisuiyun
         $options = [
             'companyName' => $companyName,
         ];
-        $result = $this->doRequest('get', '/api/v2/agent/cdk/addressee/query', ['json' => $options]);
+        $result = $this->doRequest('get', '/api/v2/agent/cdk/addressee/query', ['query' => $options]);
         return $result;
     }
 
@@ -123,7 +123,7 @@ class Huisuiyun
         $options = [
             'externalDocumentNo' => $orderNo,
         ];
-        $result = $this->doRequest('get', '/api/v2/agent/cdk/getResult/externalDocumentNo', ['json' => $options]);
+        $result = $this->doRequest('get', '/api/v2/agent/cdk/getResult/externalDocumentNo', ['query' => $options]);
         return $result;
     }
 
